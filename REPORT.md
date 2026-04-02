@@ -1,4 +1,7 @@
-# Chord Peer-to-Peer Lookup Protocol Using SimPy and Streamlit
+# Discrete-Event Simulation of the Chord Peer-to-Peer Lookup Protocol Using SimPy and Streamlit
+
+**Student Name:** Suganeshvar  
+**Registration Number:** 21MID0128
 
 ## Objective
 
