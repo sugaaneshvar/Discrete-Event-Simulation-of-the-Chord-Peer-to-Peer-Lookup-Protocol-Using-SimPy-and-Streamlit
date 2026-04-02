@@ -3,6 +3,8 @@
 This project builds a discrete-event simulation of the Chord Distributed Hash Table protocol using `SimPy` and visualizes it with `Streamlit`.
 
 ## Features
+Student Name: Suganeshvar
+Registration Number: 21MID0128
 
 - Models an `N`-node Chord ring in an `m`-bit identifier space
 - Builds and displays each node's finger table
