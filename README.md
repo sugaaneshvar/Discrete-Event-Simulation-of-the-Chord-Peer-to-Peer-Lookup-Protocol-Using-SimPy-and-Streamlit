@@ -1,42 +1,41 @@
-# Chord Peer-to-Peer Lookup Protocol Simulator
+# Discrete-Event Simulation of the Chord Peer-to-Peer Lookup Protocol Using SimPy and Streamlit
 
-This project builds a discrete-event simulation of the Chord Distributed Hash Table protocol using `SimPy` and visualizes it with `Streamlit`.
+**Student Name:** Suganeshvar  
+**Registration Number:** 21MID0128
 
-## Features
-Student Name: Suganeshvar
-Registration Number: 21MID0128
+## Objective
 
-- Models an `N`-node Chord ring in an `m`-bit identifier space
-- Builds and displays each node's finger table
-- Simulates key lookups hop-by-hop as a discrete-event process
-- Visualizes ring topology and animated lookup paths
-- Supports optional node joins and departures during a lookup
-- Shows lookup scaling against a `log2(N)` reference curve
+This activity implements the Chord peer-to-peer lookup protocol as a discrete-event simulation. The simulator models an `N`-node ring, computes finger tables, routes lookups hop-by-hop, and visualizes the effect of joins and departures on lookup behavior.
 
-## Project Files
+## Implementation Summary
 
-- `app.py`: Streamlit interface and charts
-- `chord_sim.py`: Chord network model and SimPy event simulation
-- `requirements.txt`: Python dependencies
-- `REPORT.md`: submission-ready markdown summary
-- `WALKTHROUGH_SCRIPT.md`: suggested script for the required screen-recorded demo
+The simulator uses a fixed `m`-bit identifier space and randomly places nodes on the ring. Each node stores:
 
-## Run Locally
+- Its identifier
+- Its predecessor and successor
+- A finger table with `m` entries
+
+Key lookups are modeled as `SimPy` processes. Every hop consumes one configurable latency unit. The routing rule follows Chord's idea of forwarding the request to the closest preceding finger until the responsible successor is reached.
+
+## Visual Components
+
+- Ring topology view for all active nodes
+- Finger table table for any selected node
+- Hop-by-hop lookup animation
+- Optional churn controls for node joins and departures
+- Lookup scaling chart comparing average hops against `log2(N)`
+
+## Observation
+
+The scaling chart shows that average lookup hops grow slowly as the network size increases. This matches the expected `O(log N)` behavior of Chord because each node's finger table allows the lookup to skip large portions of the ring instead of following only immediate successors.
+
+## How To Run
 
 ```powershell
 python -m pip install -r requirements.txt
 streamlit run app.py
 ```
 
-## Suggested Demo Flow
+## Conclusion
 
-1. Show the generated Chord ring and explain the identifier space.
-2. Select a node and inspect its finger table.
-3. Run a lookup without churn and step through the hop animation.
-4. Enable churn, trigger a join and departure, and rerun the lookup.
-5. Scroll to the scaling chart and explain why lookup hops follow `O(log N)`.
-
-## GitHub And Submission
-
-- Push this folder to your GitHub repository and paste the repository URL into your submission portal.
-- Export `REPORT.md` to PDF and upload that PDF to VTOP.
+The project demonstrates that Chord provides efficient decentralized key lookup with logarithmic routing cost, while also showing how routing paths can change when peers join or leave during execution.
